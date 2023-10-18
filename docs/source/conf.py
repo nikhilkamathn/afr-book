@@ -18,7 +18,6 @@ extensions = []
 
 templates_path = ['_templates']
 exclude_patterns = []
-master_doc = 'chapter1/index'
 
 
 # -- Options for HTML output -------------------------------------------------

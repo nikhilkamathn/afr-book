@@ -7,6 +7,8 @@ Welcome to the first chapter of our book!
 
 .. toctree::
    :maxdepth: 2
+   :numbered:
+   :caption: Subsections
 
    section1
    section2
