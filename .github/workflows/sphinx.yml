@@ -1,34 +1,24 @@
-name: "Sphinx: Build and Deploy"
+name: "Sphinx: Render docs"
 
-on:
-  push:
-    branches:
-      - main  # Adjust to your main branch name
+on: push
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Setup Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.11  # Use the Python version you need
-
-    - name: Install dependencies
-      run: |
-        pip install sphinx sphinx-rtd-theme  # Install Sphinx and the theme
-
+    - uses: actions/checkout@v4
     - name: Build HTML
-      run: |
-        # Replace these paths with your actual source and build paths
-        sphinx-build -b html source/ build/
-      working-directory: docs  # Change to your documentation directory
-
-    - name: Deploy to GitHub Pages
+      uses: ammaraskar/sphinx-action@master
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: html-docs
+        path: docs/build/html/
+    - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
+      if: github.ref == 'refs/heads/main'
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./build/
+        publish_dir: docs/build/html
