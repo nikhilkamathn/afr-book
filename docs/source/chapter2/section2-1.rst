@@ -1,4 +1,4 @@
-.. _section1:
+.. _section2-2:
 
 Section 1
 =========
