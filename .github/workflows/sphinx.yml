@@ -24,11 +24,11 @@ jobs:
     - name: Build HTML
       run: |
         # Replace these paths with your actual source and build paths
-        sphinx-build -b html source/ build/
+        sphinx-build -b html docs/source/ docs/build/
       working-directory: docs  # Change to your documentation directory
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./build/html
+        publish_dir: ./docs/build/html
